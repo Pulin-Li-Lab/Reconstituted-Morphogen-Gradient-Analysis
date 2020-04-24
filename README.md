@@ -23,4 +23,4 @@ Used to quantify the 1D and 2D gradients of reconstituted morphogen gradients.
 3. Run Gradient1D_analysis on as many 1D gradient images as needed
 4. Run Gradient1D_averagepos to average out all the data
 
-Background.mat files can be used interchangeably between 1D and 2D gradients
+*Background.mat files can be used interchangeably between 1D and 2D gradients
