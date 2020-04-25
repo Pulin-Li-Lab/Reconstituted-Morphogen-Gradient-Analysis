@@ -37,41 +37,41 @@ end
 % Create movies with CFP and YFP channels combined
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% % set uniform greyscale 
-% mxy=5; 
-% mxc=2000;
-% 
-% % make movie
-% name1='Combined_channels_mov_backsub.avi';
-% outfilename2=fullfile(datapath,name1);
-% t0=1;
-% aviobj = VideoWriter(outfilename2); 
-% aviobj.FrameRate = 10;
-% open(aviobj);
-% 
-% ind=0;
-% h=waitbar(0,'Generating the combined channels movie'); % generates a waitbar
-% 
-% imm=zeros(300,300,3);
-% 
-% for k=1:time_frames
-%     waitbar(1.0*ind/time_frames); 
-%     x0 = senderpos(k,1);
-%     y0 = senderpos(k,2);
-%     
-%     ind=ind+1;     
-%     imm(:,:,1)=YFP_norm(x0-149:x0+150,y0-149:y0+150,k)/mxy;
-%     imm(:,:,2)=YFP_norm(x0-149:x0+150,y0-149:y0+150,k)/mxy;
-%     imm(:,:,3)=(CFP(x0-149:x0+150,y0-149:y0+150,k)-2000)/mxc; % subtract the background value of 330
-%     
-%     imshow(imm);      % default colormap of imshow is RGB
-% 
-%     M1 = getframe;
-%     writeVideo(aviobj, M1);
-% end 
-% 
-% close(h)
-% close(aviobj);
+% set uniform greyscale 
+mxy=5; 
+mxc=2000;
+
+% make movie
+name1='Combined_channels_mov_backsub.avi';
+outfilename2=fullfile(datapath,name1);
+t0=1;
+aviobj = VideoWriter(outfilename2); 
+aviobj.FrameRate = 10;
+open(aviobj);
+ 
+ind=0;
+h=waitbar(0,'Generating the combined channels movie'); % generates a waitbar
+
+imm=zeros(300,300,3);
+ 
+for k=1:time_frames
+    waitbar(1.0*ind/time_frames); 
+    x0 = senderpos(k,1);
+    y0 = senderpos(k,2);
+     
+    ind=ind+1;     
+    imm(:,:,1)=YFP_norm(x0-149:x0+150,y0-149:y0+150,k)/mxy;
+    imm(:,:,2)=YFP_norm(x0-149:x0+150,y0-149:y0+150,k)/mxy;
+    imm(:,:,3)=(CFP(x0-149:x0+150,y0-149:y0+150,k)-2000)/mxc; % subtract the background value of 330
+     
+    imshow(imm);      % default colormap of imshow is RGB
+ 
+    M1 = getframe;
+    writeVideo(aviobj, M1);
+end 
+ 
+close(h)
+close(aviobj);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Create circles and quantify gradient
