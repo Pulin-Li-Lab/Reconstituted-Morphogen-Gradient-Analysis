@@ -101,6 +101,7 @@ save(fullfile(datapath, 'circledata'),'circledata');
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % Plot the gradient
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%This plot is just of the individual gradients. This can be a checking point for the individual gradients.
 
 % find the boundary
     fieldsize=150;
@@ -134,6 +135,7 @@ save(fullfile(datapath, 'circledata'),'circledata');
         cmapr(i,:,1)=[1 1 0]-i/time_frames*[0 1 0];
     end
     
+    %plotting data
     Fig1=figure();
     name1=('Total Fluorescence');
     hold on
@@ -141,7 +143,6 @@ save(fullfile(datapath, 'circledata'),'circledata');
         plot((0:fieldsize-1)*1.3,YFP_smo(i,:),'Color',[1 1 0]-i/time_frames*[0 1 0])
     end
     xlim([0 200])
-%     ylim([0 1]);
     xlabel('Distance from sender(um)')
     ylabel('Total Citrine (a.u.)')
     hold off
@@ -162,11 +163,8 @@ function circlemark=make_circlemark(radius,x0,y0,image,width)
 
 % this function gives back a circle mask of a certain width that will be
 % embedded in an image (2D matrix) afterwards by doing
-% max(image,circlemark)
 
 imagesize=size(image);
-
-% ymaxcfp=1.0*max(max(image));
 
 circlePixels=makecircle(radius,x0,y0,imagesize);
 circlePixelsbis=makecircle(radius-width,x0,y0,imagesize);
