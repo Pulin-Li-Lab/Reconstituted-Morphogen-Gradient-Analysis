@@ -16,7 +16,8 @@ for k=1:tfin
     im=im2double(imread(fullfile(datapath,nameCFP)))*65535; % when converting unit16 to double, the data get rescaled (unit16 uses[0 65535] range)
     CFPmedian=median(median(im)); % this number is consistently 326 among many positions
     CFPstd=500;  % this is about the std of background control (use this std for 2015 movies)
-    CFPcutoff=CFPmedian+3*CFPstd;
+    CFPcutoff=CFPmedian+3*CFPstd; %this is the threshold for determining if a pixel is CFP positive or not
+    %generating CFP binary mask
     CFPmask=zeros(1024,1024);
     for l=1:1024
         for m=1:1024
