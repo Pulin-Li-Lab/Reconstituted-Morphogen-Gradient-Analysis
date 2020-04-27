@@ -13,23 +13,27 @@ if ~datapath
 return;
 end
 
+%loading tracked sender positions and background data (make sure to have these files
+%copied and opened in the data file you are analyzing so Matlab can access it)
 load(fullfile(datapath,'senderpos.mat'));
 load(fullfile(datapath,'Background.mat'));
 
+%Building file name to use to extract data in the below for loop
 posid=strfind(datapath,'Pos');
 pos=datapath(posid+3:end);
-% pos=str2double(datapath(posid+3:end));
 
 namepre=strcat('200302xy',pos);
 
-
+%Preparing empty matrixes (1024x1024 pixels in the image)
 YFP=zeros(1024,1024,time_frames);
 YFP_norm=zeros(1024,1024,time_frames);
+%For each time point, extracting the data in the pre-prepared matrixes
 for i=t0:tfin
     YFPfilename=strcat(namepre,'c2t',num2str(i,'%03d'),'.tif');
     CFPfilename=strcat(namepre,'c1t',num2str(i,'%03d'),'.tif');
     YFP(:,:,i)=imread(fullfile(datapath,YFPfilename));
     CFP(:,:,i)=imread(fullfile(datapath,CFPfilename));
+    %Normalizing YFP data and accounting for media and background fluorescence 
     YFP_norm(:,:,i)=(YFP(:,:,i) - MediaOnly_YFPmean)./(PosField_YFPmean - MediaOnly_YFPmean);
 end
 
