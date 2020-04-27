@@ -28,9 +28,9 @@ for k=1:tfin
         end
     end
     back{1}.avback_norm(:,:,k)=CFPmask(:,:); % return a binary mask 
-    back{1}.avback(:,:,k)=im(:,:);
+    back{1}.avback(:,:,k)=im(:,:); %returns modified CFP data
 
-    nameYFP=strcat(namepre,'c2t',num2str(k,'%03d'),'.tif'); 
+    nameYFP=strcat(namepre,'c2t',num2str(k,'%03d'),'.tif'); %Building YFP file name
     im=im2double(imread(fullfile(datapath,nameYFP)))*65535; % when converting unit16 to double, the data get rescaled (unit16 uses[0 65535] range)
     %normalizing the data: data = (data - MediaBack)/(FluorescentBack-MediaBack)
     %BUT FluorescentBack not actually factored in because the final data was
